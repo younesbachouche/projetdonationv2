@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Projet - Plateforme de Donation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background-color: #f5f5f5;
+        }
+        
+        .page-break {
+            page-break-after: always;
+            margin: 50px 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 80px 60px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.08);
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding: 120px 0;
+            border-bottom: 4px solid #1a4d7a;
+            margin-bottom: 60px;
+        }
+        
+        .cover-page h1 {
+            font-size: 52px;
+            color: #1a4d7a;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        .cover-page h2 {
+            font-size: 32px;
+            color: #2980b9;
+            margin-bottom: 80px;
+            font-weight: bold;
+        }
+        
+        .cover-page .meta {
+            font-size: 16px;
+            color: #555;
+            line-height: 2.2;
+            margin-top: 120px;
+        }
+        
+        .cover-page .meta strong {
+            color: #1a4d7a;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #1a4d7a;
+            font-size: 28px;
+            margin: 50px 0 25px 0;
+            border-bottom: 3px solid #2980b9;
+            padding-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        h2 {
+            color: #2980b9;
+            font-size: 22px;
+            margin: 40px 0 20px 0;
+            font-weight: bold;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 18px;
+            margin: 30px 0 15px 0;
+            font-weight: bold;
+        }
+        
+        h4 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin: 15px 0 10px 0;
+            font-weight: bold;
+        }
+        
+        p {
+            margin: 20px 0;
+            text-align: justify;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+        
+        ul, ol {
+            margin: 20px 0 20px 45px;
+            font-size: 16px;
+        }
+        
+        li {
+            margin: 12px 0;
+            line-height: 1.8;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 15px;
+        }
+        
+        table th {
+            background-color: #2980b9;
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+        
+        table tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .box {
+            background-color: #ecf0f1;
+            padding: 25px;
+            border-left: 5px solid #2980b9;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .box h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .box p {
+            font-size: 16px;
+        }
+        
+        .toc {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 4px;
+            margin: 30px 0;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            margin: 0;
+        }
+        
+        .toc li {
+            margin: 12px 0;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+        
+        .toc li:before {
+            content: "→ ";
+            color: #2980b9;
+            font-weight: bold;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 4px solid #2980b9;
+        }
+        
+        .feature-item h4 {
+            color: #1a4d7a;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .feature-item p {
+            font-size: 16px;
+            margin: 0;
+            line-height: 1.7;
+        }
+        
+        .footer {
+            margin-top: 80px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 2px solid #ddd;
+            padding-top: 30px;
+        }
+        
+        .footer p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        @media print {
+            .container {
+                box-shadow: none;
+                padding: 40px;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page de couverture -->
+        <div class="cover-page">
+            <h1>RAPPORT DE PROJET WEB</h1>
+            <h2>Plateforme de Donation en Ligne</h2>
+            
+            <div class="meta">
+                <p><strong>Titre du Projet :</strong> Donation - Médicaments & Vêtements</p>
+                <p><strong>Type de Projet :</strong> Application Web Fullstack</p>
+                <p><strong>Technologie :</strong> Laravel + Vue.js/React + MySQL</p>
+                <p><strong>Date :</strong> 2026</p>
+                <p><strong>Version :</strong> 1.0</p>
+            </div>
+        </div>
+        
+        <!-- Table des matières -->
+        <div class="page-break">
+            <h1>Table des Matières</h1>
+            <div class="toc">
+                <ul>
+                    <li>1. Résumé Exécutif</li>
+                    <li>2. Introduction</li>
+                    <li>3. Description du Projet</li>
+                    <li>4. Objectifs du Projet</li>
+                    <li>5. Public Cible</li>
+                    <li>6. Fonctionnalités Principales</li>
+                    <li>7. Architecture Technique</li>
+                    <li>8. Base de Données</li>
+                    <li>9. Sécurité et Conformité</li>
+                    <li>10. Planification et Timeline</li>
+                    <li>11. Conclusion</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Contenu -->
+        <div class="page-break">
+            <h1>1. Résumé Exécutif</h1>
+            <p>
+                La plateforme "Donation" est une application web innovante conçue pour faciliter et optimiser 
+                le processus de donation de médicaments, vêtements et autres biens essentiels. Ce projet vise à 
+                créer un pont entre les donateurs généreux et les personnes ou organisations nécessiteuses en 
+                proposant une solution numérelle complète, sécurisée et intuitive.
+            </p>
+            <p>
+                Cette plateforme permet aux utilisateurs de publier des annonces de donation, de consulter les 
+                donations disponibles, de gérer leur profil, et de tracer les transactions de manière transparente 
+                et traçable.
+            </p>
+            
+            <h1>2. Introduction</h1>
+            <p>
+                Dans un monde en constante évolution, les besoins en aide humanitaire et en partage de ressources 
+                se font de plus en plus pressants. Malheureusement, les processus traditionnels de donation sont souvent 
+                compliqués, peu transparents et difficiles à gérer pour les deux parties impliquées.
+            </p>
+            <p>
+                C'est dans ce contexte que le projet "Donation" a été créé : offrir une plateforme numérique 
+                moderne et efficace qui simplifie les donations, améliore la traçabilité, et crée une communauté 
+                solidaire autour de l'entraide et du partage.
+            </p>
+            
+            <h1>3. Description du Projet</h1>
+            <h2>Vue d'ensemble</h2>
+            <p>
+                La plateforme "Donation" est une application web full-stack qui permet :
+            </p>
+            <ul>
+                <li>Aux donateurs de créer des annonces de donation détaillées avec descriptions, photos et catégories</li>
+                <li>Aux receveurs de découvrir les donations disponibles dans leur région ou domaine d'intérêt</li>
+                <li>Aux administrateurs de modérer le contenu et de gérer les catégories de donation</li>
+                <li>À tous les utilisateurs de communiquer via un système de messagerie intégré</li>
+                <li>De maintenir un historique complet et traçable de toutes les transactions</li>
+            </ul>
+            
+            <h2>Catégories de Donation</h2>
+            <p>La plateforme supporte plusieurs catégories principales :</p>
+            <ul>
+                <li><strong>Médicaments et produits de santé :</strong> Médicaments, vitamines, suppléments, équipements médicaux</li>
+                <li><strong>Vêtements :</strong> Habits, chaussures, accessoires de mode</li>
+                <li><strong>Articles de maison :</strong> Meubles, électroménagers, décoration</li>
+                <li><strong>Articles éducatifs :</strong> Livres, fournitures scolaires, équipements d'apprentissage</li>
+                <li><strong>Autres :</strong> Catégorie flexible pour les donations spéciales</li>
+            </ul>
+            
+            <h1>4. Objectifs du Projet</h1>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h4>🎯 Objectif Principal</h4>
+                    <p>Créer une plateforme accessible et intuitive pour faciliter les donations entre particuliers et organisations.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📱 Objectif Utilisateur</h4>
+                    <p>Permettre aux utilisateurs de gérer facilement leurs donations en quelques clics, sans complexité technique.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔒 Objectif Sécurité</h4>
+                    <p>Assurer la confidentialité des données personnelles et la sécurité des transactions.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🌍 Objectif Social</h4>
+                    <p>Créer une communauté solidaire et encourager le partage d'une manière responsable et traçable.</p>
+                </div>
+            </div>
+            
+            <h1>5. Public Cible</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Segment</th>
+                        <th>Description</th>
+                        <th>Besoins</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Donateurs Individuels</strong></td>
+                        <td>Particuliers souhaitant donner des biens qu'ils n'utilisent plus</td>
+                        <td>Interface simple, visibilité de leurs donations, confirmation de remise</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Organisations Caritatives</strong></td>
+                        <td>ONG, associations, organismes sociaux cherchant des ressources</td>
+                        <td>Recherche avancée, gestion de stocks, rapports</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Particuliers Receveurs</strong></td>
+                        <td>Personnes en besoin cherchant des articles essentiels</td>
+                        <td>Recherche par catégorie, notification, proximité géographique</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Administrateurs</strong></td>
+                        <td>Modérateurs et gestionnaires de la plateforme</td>
+                        <td>Outils de modération, analytics, gestion du contenu</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h1>6. Fonctionnalités Principales</h1>
+            
+            <h2>6.1 Authentification et Gestion des Utilisateurs</h2>
+            <ul>
+                <li>Inscription et connexion sécurisées avec validation d'email</li>
+                <li>Profils utilisateurs personnalisables (photo, bio, localisation)</li>
+                <li>Rôles et permissions (Donateur, Receveur, Administrateur)</li>
+                <li>Récupération de mot de passe sécurisée</li>
+                <li>Authentification deux facteurs optionnelle</li>
+            </ul>
+            
+            <h2>6.2 Gestion des Donations</h2>
+            <ul>
+                <li>Création d'annonces de donation avec titre, description, photos, catégorie</li>
+                <li>Téléchargement d'images optimisées et sécurisées</li>
+                <li>Marquage de donations comme "Disponible", "En attente", "Donnée"</li>
+                <li>Édition et suppression d'annonces par le propriétaire</li>
+                <li>Historique complet des modifications</li>
+            </ul>
+            
+            <h2>6.3 Découverte et Recherche</h2>
+            <ul>
+                <li>Filtrage par catégorie, localisation, date</li>
+                <li>Moteur de recherche textuel avancé</li>
+                <li>Liste des donations avec vignettes prévisualisées</li>
+                <li>Page de détail complète pour chaque donation</li>
+                <li>Notifications pour les nouvelles donations correspondant à la recherche</li>
+            </ul>
+            
+            <h2>6.4 Communication</h2>
+            <ul>
+                <li>Système de messagerie interne entre utilisateurs</li>
+                <li>Notifications en temps réel pour les nouveaux messages</li>
+                <li>Historique des conversations persistant</li>
+                <li>Option de signalement/blocage des utilisateurs</li>
+            </ul>
+            
+            <h2>6.5 Système de Catégories</h2>
+            <ul>
+                <li>Gestion complète des catégories par les administrateurs</li>
+                <li>Icônes personnalisées pour chaque catégorie</li>
+                <li>Catégories avec descriptions et guidelines</li>
+                <li>Possibilité de créer des sous-catégories</li>
+            </ul>
+            
+            <h2>6.6 Tableau de Bord Utilisateur</h2>
+            <ul>
+                <li>Vue d'ensemble des donations actives de l'utilisateur</li>
+                <li>Historique des donations antérieures</li>
+                <li>Messages non lus et notifications</li>
+                <li>Statistiques et activité personnelle</li>
+                <li>Paramètres de compte et de confidentialité</li>
+            </ul>
+            
+            <h2>6.7 Administration et Modération</h2>
+            <ul>
+                <li>Tableau de bord d'administration complet</li>
+                <li>Gestion des utilisateurs (activation, suspension, suppression)</li>
+                <li>Modération des donations (approbation, rejet, suppression)</li>
+                <li>Rapports et analytics sur l'utilisation</li>
+                <li>Gestion des catégories et de la configuration du site</li>
+            </ul>
+            
+            <h1>7. Architecture Technique</h1>
+            
+            <h2>7.1 Stack Technologique</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Composant</th>
+                        <th>Technologie</th>
+                        <th>Version</th>
+                        <th>Justification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Backend</strong></td>
+                        <td>Laravel</td>
+                        <td>11.x</td>
+                        <td>Framework PHP robuste, sécurisé, avec écosystème complet</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Frontend</strong></td>
+                        <td>Blade Templates + Tailwind CSS</td>
+                        <td>Latest</td>
+                        <td>Rendu côté serveur pour SEO, CSS utility-first pour styling rapide</td>
+                    </tr>
+                    <tr>
+                        <td><strong>JavaScript</strong></td>
+                        <td>Vite</td>
+                        <td>5.x</td>
+                        <td>Bundler moderne et rapide avec HMR</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Base de Données</strong></td>
+                        <td>MySQL</td>
+                        <td>8.0+</td>
+                        <td>SGBDR fiable, performant et largement supporté</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authentification</strong></td>
+                        <td>Laravel Sanctum</td>
+                        <td>Latest</td>
+                        <td>Authentification API sécurisée et sessions web</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>7.2 Architecture du Projet</h2>
+            <div class="box">
+                <h3>Structure MVC</h3>
+                <p>
+                    Le projet suit le pattern MVC (Model-View-Controller) de Laravel :
+                </p>
+                <ul>
+                    <li><strong>Models :</strong> User, Donation, Category - représentent les données</li>
+                    <li><strong>Controllers :</strong> Logique métier et interactions avec les models</li>
+                    <li><strong>Views :</strong> Templates Blade pour le rendu HTML</li>
+                    <li><strong>Routes :</strong> Web (web.php) et API (api.php)</li>
+                </ul>
+            </div>
+            
+            <h2>7.3 API RESTful</h2>
+            <p>La plateforme expose une API RESTful pour :</p>
+            <ul>
+                <li>Opérations CRUD sur les donations</li>
+                <li>Authentification et gestion des utilisateurs</li>
+                <li>Recherche et filtrage avancés</li>
+                <li>Système de messagerie</li>
+                <li>Notifications en temps réel (WebSockets optionnel)</li>
+            </ul>
+            
+            <h1>8. Base de Données</h1>
+            
+            <h2>8.1 Modèle de Données Conceptuel</h2>
+            <h3>Table : Users</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Colonne</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>BIGINT (PK)</td>
+                        <td>Identifiant unique de l'utilisateur</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>VARCHAR(255)</td>
+                        <td>Nom complet de l'utilisateur</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>VARCHAR(255) UNIQUE</td>
+                        <td>Adresse email unique</td>
+                    </tr>
+                    <tr>
+                        <td>password</td>
+                        <td>VARCHAR(255)</td>
+                        <td>Mot de passe hashé (bcrypt)</td>
+                    </tr>
+                    <tr>
+                        <td>phone</td>
+                        <td>VARCHAR(20) NULLABLE</td>
+                        <td>Numéro de téléphone optionnel</td>
+                    </tr>
+                    <tr>
+                        <td>address</td>
+                        <td>VARCHAR(255) NULLABLE</td>
+                        <td>Adresse de localisation</td>
+                    </tr>
+                    <tr>
+                        <td>bio</td>
+                        <td>TEXT NULLABLE</td>
+                        <td>Biographie courte de l'utilisateur</td>
+                    </tr>
+                    <tr>
+                        <td>role</td>
+                        <td>ENUM('user', 'admin')</td>
+                        <td>Rôle de l'utilisateur</td>
+                    </tr>
+                    <tr>
+                        <td>created_at, updated_at</td>
+                        <td>TIMESTAMP</td>
+                        <td>Métadonnées temporelles</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Table : Categories</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Colonne</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>BIGINT (PK)</td>
+                        <td>Identifiant unique de la catégorie</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>VARCHAR(255)</td>
+                        <td>Nom de la catégorie</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TEXT NULLABLE</td>
+                        <td>Description complète</td>
+                    </tr>
+                    <tr>
+                        <td>icon</td>
+                        <td>VARCHAR(255) NULLABLE</td>
+                        <td>URL ou classe CSS de l'icône</td>
+                    </tr>
+                    <tr>
+                        <td>created_at, updated_at</td>
+                        <td>TIMESTAMP</td>
+                        <td>Métadonnées temporelles</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Table : Donations</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Colonne</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>BIGINT (PK)</td>
+                        <td>Identifiant unique de la donation</td>
+                    </tr>
+                    <tr>
+                        <td>user_id</td>
+                        <td>BIGINT (FK)</td>
+                        <td>Référence à l'utilisateur donateur</td>
+                    </tr>
+                    <tr>
+                        <td>category_id</td>
+                        <td>BIGINT (FK)</td>
+                        <td>Référence à la catégorie de donation</td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>VARCHAR(255)</td>
+                        <td>Titre de l'annonce</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TEXT</td>
+                        <td>Description détaillée de l'article</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>ENUM('available', 'pending', 'given')</td>
+                        <td>État de la donation</td>
+                    </tr>
+                    <tr>
+                        <td>image_path</td>
+                        <td>VARCHAR(255) NULLABLE</td>
+                        <td>Chemin vers l'image principale</td>
+                    </tr>
+                    <tr>
+                        <td>location</td>
+                        <td>VARCHAR(255) NULLABLE</td>
+                        <td>Localisation du bien</td>
+                    </tr>
+                    <tr>
+                        <td>created_at, updated_at</td>
+                        <td>TIMESTAMP</td>
+                        <td>Métadonnées temporelles</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h1>9. Sécurité et Conformité</h1>
+            
+            <h2>9.1 Mesures de Sécurité Implémentées</h2>
+            <ul>
+                <li><strong>Authentification :</strong> Passwords hashés avec bcrypt, sessions sécurisées</li>
+                <li><strong>CSRF :</strong> Tokens CSRF sur tous les formulaires</li>
+                <li><strong>Validation :</strong> Validation stricte de tous les inputs coté serveur</li>
+                <li><strong>SQL Injection :</strong> Utilisation d'ORM (Eloquent) et requêtes préparées</li>
+                <li><strong>XSS :</strong> Échappement automatique dans Blade templates</li>
+                <li><strong>Autorisation :</strong> Middleware et policies pour contrôle d'accès</li>
+                <li><strong>Rate Limiting :</strong> Protection contre les abus et attaques brute-force</li>
+            </ul>
+            
+            <h2>9.2 Gestion des Données Sensibles</h2>
+            <ul>
+                <li>Stockage sécurisé des fichiers uploadés</li>
+                <li>Suppression complète des données lors de suppression de compte</li>
+                <li>Logs d'audit pour les actions critiques</li>
+                <li>Conformité RGPD pour la protection des données personnelles</li>
+            </ul>
+            
+            <h2>9.3 Sécurité des Fichiers</h2>
+            <ul>
+                <li>Validation du type MIME des fichiers uploadés</li>
+                <li>Limitation de la taille des fichiers</li>
+                <li>Stockage en dehors de la racine web</li>
+                <li>Noms de fichiers randomisés pour éviter la prédiction</li>
+            </ul>
+            
+            <h1>10. Planification et Timeline</h1>
+            
+            <h2>10.1 Phases de Développement</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Durée</th>
+                        <th>Livrables</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Phase 1 : Analyse & Design</strong></td>
+                        <td>1-2 semaines</td>
+                        <td>Spécifications, mockups, architecture</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 2 : Backend</strong></td>
+                        <td>3-4 semaines</td>
+                        <td>API, modèles, authentification</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 3 : Frontend</strong></td>
+                        <td>3-4 semaines</td>
+                        <td>Interfaces, formulaires, pages</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 4 : Tests & QA</strong></td>
+                        <td>2 semaines</td>
+                        <td>Tests unitaires, intégration, performance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 5 : Déploiement</strong></td>
+                        <td>1 semaine</td>
+                        <td>Production, documentation, support</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h1>11. Conclusion</h1>
+            <p>
+                Le projet "Donation" représente une initiative importante pour moderniser et démocratiser 
+                le processus de donation en ligne. En combinant une architecture technique robuste, une interface 
+                utilisateur intuitive et des mesures de sécurité complètes, nous créons une plateforme fiable 
+                et sécurisée pour tous les acteurs.
+            </p>
+            <p>
+                Cette plateforme ne se contente pas de faciliter les transactions ; elle crée une communauté 
+                engagée autour des valeurs de solidarité, de partage et d'entraide. Avec des fonctionnalités 
+                bien pensées et une architecture évolutive, elle est prête à s'adapter aux besoins futurs et 
+                à croître avec sa communauté d'utilisateurs.
+            </p>
+            <p>
+                Nous sommes convaincus que ce projet contribuera significativement à améliorer la qualité de vie 
+                de nombreuses personnes en facilitant l'accès aux ressources essentielles et en créant des liens 
+                de solidarité durables.
+            </p>
+            
+            <div class="box">
+                <h3>📌 Points Clés à Retenir</h3>
+                <ul>
+                    <li>Plateforme web complète pour donations de médicaments et vêtements</li>
+                    <li>Architecture sécurisée basée sur Laravel et MySQL</li>
+                    <li>Fonctionnalités complètes de gestion d'utilisateurs et d'annonces</li>
+                    <li>Système de recherche et filtrage avancé</li>
+                    <li>Conformité avec les standards de sécurité et confidentialité</li>
+                    <li>Interface intuitive et responsive pour tous les utilisateurs</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Rapport généré le 2 Juin 2026 - Plateforme de Donation v1.0</p>
+            <p>© 2026 Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>
