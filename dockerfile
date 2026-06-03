@@ -2,44 +2,46 @@ FROM php:8.2-fpm
 
 WORKDIR /var/www/html
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
-    git \
-    curl \
     nginx \
-    supervisor
+    curl \
+    git \
+    zip \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install gd pdo pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy project
+# Copy project files
 COPY . .
 
-# Install dependencies
+# Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Copy Nginx config
-RUN mkdir -p /etc/nginx/sites-enabled
-COPY nginx.conf /etc/nginx/sites-enabled/default
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html
 
-# Copy supervisor config
-COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
+# Copy Nginx config
+COPY nginx.conf /etc/nginx/sites-available/default
+
+# Remove default Nginx sites
+RUN rm -f /etc/nginx/sites-enabled/default
+
+# Enable our Nginx config
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 # Expose port
 EXPOSE 10000
 
-# Run deploy script and start services
-CMD ["/bin/bash", "-c", "php artisan config:cache && php artisan route:cache && php artisan migrate --force && /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf"]
+# Create startup script
+RUN mkdir -p /app/scripts
+COPY scripts/start.sh /app/scripts/start.sh
+RUN chmod +x /app/scripts/start.sh
+
+# Run startup script
+CMD ["/app/scripts/start.sh"]
