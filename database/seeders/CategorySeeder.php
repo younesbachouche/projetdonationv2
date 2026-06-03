@@ -14,14 +14,14 @@ class CategorySeeder extends Seeder
             'Médicaments',
             'Vêtements',
             'Nourriture',
-            'Aide humanitaire'
+            'Livres et Éducation'
         ];
 
         foreach ($categories as $category) {
-            Category::create([
-                'name' => $category,
-                'slug' => Str::slug($category)
-            ]);
+            Category::updateOrCreate(
+                ['slug' => Str::slug($category)],
+                ['name' => $category]
+            );
         }
     }
 }
