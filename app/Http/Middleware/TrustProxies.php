@@ -14,6 +14,11 @@ class TrustProxies extends Middleware
      */
     protected $proxies;
 
+    public function __construct()
+    {
+        $this->proxies = env('CC_REVERSE_PROXY_IPS', '*');
+    }
+
     /**
      * The headers that should be used to detect proxies.
      *
