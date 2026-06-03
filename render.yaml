@@ -1,70 +1,75 @@
 services:
   - type: web
     name: donation-platform
-    runtime: php
+    runtime: docker
     plan: starter
-    
-    buildCommand: >
-      composer install --no-dev &&
-      npm install --legacy-peer-deps &&
-      npm run build &&
-      php artisan config:cache &&
-      php artisan route:cache &&
-      php artisan view:cache
-    
-    startCommand: >
-      php artisan migrate --force &&
-      php artisan storage:link &&
-      vendor/bin/heroku-php-apache2 public/
-    
     healthCheckPath: /
-    
+
     envVars:
       - key: APP_NAME
         value: Donation
-      
+
       - key: APP_ENV
         value: production
-      
+
       - key: APP_DEBUG
-        value: false
-      
+        value: "false"
+
+      - key: APP_KEY
+        sync: false
+
       - key: APP_URL
         scope: self
         value: https://${RENDER_EXTERNAL_HOSTNAME}
-      
-      - key: DB_CONNECTION
-        value: mysql
-      
-      - key: DB_HOST
-        value: sql208.infinityfree.com
-      
-      - key: DB_PORT
-        value: 3306
-      
-      - key: DB_DATABASE
-        value: if0_42083136_donation_db
-      
-      - key: DB_USERNAME
-        value: if0_42083136
-      
-      - key: DB_PASSWORD
-        value: C9eswcnq3RXq
-      
-      - key: SESSION_DRIVER
-        value: cookie
-      
-      - key: CACHE_DRIVER
-        value: database
-      
-      - key: QUEUE_CONNECTION
-        value: sync
-      
+
       - key: LOG_CHANNEL
-        value: stack
-      
+        value: stderr
+
       - key: LOG_LEVEL
         value: info
+
+      - key: CACHE_DRIVER
+        value: file
+
+      - key: SESSION_DRIVER
+        value: file
+
+      - key: QUEUE_CONNECTION
+        value: sync
+
+      - key: FILESYSTEM_DISK
+        value: public
+
+      - key: DB_CONNECTION
+        value: mysql
+
+      - key: DB_HOST
+        fromDatabase:
+          name: donation-mysql
+          property: host
+
+      - key: DB_PORT
+        fromDatabase:
+          name: donation-mysql
+          property: port
+
+      - key: DB_DATABASE
+        fromDatabase:
+          name: donation-mysql
+          property: database
+
+      - key: DB_USERNAME
+        fromDatabase:
+          name: donation-mysql
+          property: user
+
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: donation-mysql
+          property: password
+
+databases:
+  - name: donation-mysql
     plan: starter
-    initializer:
-      restoreBlueprintId: null
+    databaseName: donations
+    user: donations
